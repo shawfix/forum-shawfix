@@ -7,16 +7,19 @@
         <artifactId>forum-shawfix</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>forum-facade</artifactId>
+    <artifactId>forum-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>forum-facade</name>
-    <description>forum-facade</description>
+    <name>forum-api</name>
+    <description>forum-api</description>
 
     <dependencies>
         <dependency>
-            <groupId>pub.shawfix</groupId>
-            <artifactId>forum-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
     </dependencies>
 </project>
