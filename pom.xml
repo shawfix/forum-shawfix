@@ -25,6 +25,7 @@
         <module>forum-api</module>
         <module>forum-app</module>
         <module>forum-domain</module>
+        <module>forum-common</module>
     </modules>
 
     <dependencyManagement>

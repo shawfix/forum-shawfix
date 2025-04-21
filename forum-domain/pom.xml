@@ -13,6 +13,11 @@
     <description>forum-domain</description>
 
     <dependencies>
+        <dependency>
+            <groupId>pub.shawfix</groupId>
+            <artifactId>forum-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
