@@ -21,6 +21,7 @@
 
     <modules>
         <module>forum-starter</module>
+        <module>forum-facade</module>
     </modules>
 
     <dependencyManagement>
