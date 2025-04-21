@@ -7,23 +7,12 @@
         <artifactId>forum-shawfix</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>forum-app</artifactId>
+    <artifactId>forum-domain</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>forum-app</name>
-    <description>forum-app</description>
+    <name>forum-domain</name>
+    <description>forum-domain</description>
 
     <dependencies>
-        <dependency>
-            <groupId>pub.shawfix</groupId>
-            <artifactId>forum-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>pub.shawfix</groupId>
-            <artifactId>forum-domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
 </project>
