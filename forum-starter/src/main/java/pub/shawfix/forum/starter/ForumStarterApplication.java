@@ -1,13 +1,13 @@
-package pub.shawfix.forum;
+package pub.shawfix.forum.starter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ForumShawfixApplication {
+public class ForumStarterApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(ForumShawfixApplication.class, args);
+    SpringApplication.run(ForumStarterApplication.class, args);
   }
 
 }
