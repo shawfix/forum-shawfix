@@ -21,6 +21,12 @@
 
         <dependency>
             <groupId>pub.shawfix</groupId>
+            <artifactId>forum-infrastructure</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>pub.shawfix</groupId>
             <artifactId>forum-portal</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
