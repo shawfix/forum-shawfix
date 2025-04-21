@@ -18,6 +18,12 @@
             <artifactId>forum-facade</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>pub.shawfix</groupId>
+            <artifactId>forum-portal</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
