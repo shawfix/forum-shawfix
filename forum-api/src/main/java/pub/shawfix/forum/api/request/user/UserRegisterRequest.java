@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRegisterRequest implements Serializable {
+public class UserRegisterRequest extends UserBaseLoginRequest implements Serializable {
 
     private String email;
 

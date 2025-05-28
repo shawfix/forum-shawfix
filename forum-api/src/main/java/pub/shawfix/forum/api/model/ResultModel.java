@@ -3,6 +3,7 @@ package pub.shawfix.forum.api.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Data
 @Builder
 @AllArgsConstructor
-@RequestMapping
+@NoArgsConstructor
 public class ResultModel<T> {
     private Integer code = 200;
     private String message = "success";
