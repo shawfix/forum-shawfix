@@ -100,7 +100,8 @@ public class UserApiServiceImpl implements UserApiService {
 
     @Override
     public ResultModel<?> updateHeadImg(String linkFilenameData) {
-        return null;
+        userManager.updateHeadImg(linkFilenameData);
+        return ResultModelUtil.success();
     }
 
     @Override

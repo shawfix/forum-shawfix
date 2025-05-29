@@ -97,6 +97,20 @@ public class UserManager extends AbstractLoginManager {
     }
 
     /**
+     * 更新用户头像
+     * @param linkFilenameData
+     */
+    @IsLogin
+    @Transactional
+    public void updateHeadImg(String linkFilenameData) {
+        User loginUser = LoginUserContext.getUser();
+        loginUser.setAvatar(linkFilenameData);
+        // 更新缓存中的登录用户信息
+        updateCacheUser(loginUser);
+        userRepository.update(loginUser);
+    }
+
+    /**
      * 登出
      * @param request
      */
