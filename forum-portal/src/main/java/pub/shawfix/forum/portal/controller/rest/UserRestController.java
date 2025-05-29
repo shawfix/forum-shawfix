@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import pub.shawfix.forum.api.model.ResultModel;
 import pub.shawfix.forum.api.request.user.UserEmailLoginRequest;
 import pub.shawfix.forum.api.request.user.UserRegisterRequest;
+import pub.shawfix.forum.api.request.user.UserUpdateInfoRequest;
 import pub.shawfix.forum.api.service.UserApiService;
+import pub.shawfix.forum.common.constant.Constant;
 import pub.shawfix.forum.portal.controller.support.WebUtil;
 
 import javax.annotation.Resource;
@@ -48,5 +50,12 @@ public class UserRestController {
         WebUtil.cookieAddSid(servletResponse, resultModel.getData());
 
         return resultModel;
+    }
+
+    @PostMapping("/update-info")
+    public ResultModel<?> updateInfo(@RequestBody UserUpdateInfoRequest updateInfoRequest, HttpServletRequest request) {
+        request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
+
+        return userApiService.updateInfo(updateInfoRequest);
     }
 }

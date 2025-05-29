@@ -7,6 +7,9 @@ import org.springframework.util.ObjectUtils;
 import pub.shawfix.forum.api.request.user.UserEmailLoginRequest;
 import pub.shawfix.forum.api.request.user.UserRegisterRequest;
 import pub.shawfix.forum.api.request.user.UserTokenLogoutRequest;
+import pub.shawfix.forum.api.request.user.UserUpdateInfoRequest;
+import pub.shawfix.forum.app.support.IsLogin;
+import pub.shawfix.forum.app.support.LoginUserContext;
 import pub.shawfix.forum.app.transfer.UserTransfer;
 import pub.shawfix.forum.common.enums.CacheBizTypeEn;
 import pub.shawfix.forum.common.enums.ErrorCodeEn;
@@ -76,6 +79,23 @@ public class UserManager extends AbstractLoginManager {
         return login(registerUser, request);
     }
 
+
+    @IsLogin
+    @Transactional
+    public void updateInfo(UserUpdateInfoRequest request) {
+        User loginUser = LoginUserContext.getUser();
+        User user = userRepository.getByEmail(request.getEmail());
+        if (!ObjectUtils.isEmpty(user)) {
+            CheckUtil.isFalse(user.getId().equals(loginUser.getId()), ErrorCodeEn.USER_REGISTER_EMAIL_IS_EXIST);
+        }
+
+        User updateUser = UserTransfer.toUser(loginUser, request);
+
+        // 更新缓存中登录用户信息
+        updateCacheUser(updateUser);
+        userRepository.update(updateUser);
+    }
+
     /**
      * 登出
      * @param request
@@ -88,6 +108,11 @@ public class UserManager extends AbstractLoginManager {
 
         // 触发保存操作日志事件
         EventBus.emit(EventBus.Topic.USER_LOGOUT, OptLog.createUserLogoutRecordLog(user.getId(), JSON.toJSONString(request)));
+    }
+
+    private void updateCacheUser(User updateUser) {
+        LoginUserContext.setUser(updateUser);
+        cacheLoginUser(LoginUserContext.getToken(), updateUser);
     }
 
 

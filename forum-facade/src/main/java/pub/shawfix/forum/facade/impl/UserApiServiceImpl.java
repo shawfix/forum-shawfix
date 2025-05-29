@@ -93,7 +93,9 @@ public class UserApiServiceImpl implements UserApiService {
 
     @Override
     public ResultModel<?> updateInfo(UserUpdateInfoRequest request) {
-        return null;
+        UserValidator.updateInfo(request);
+        userManager.updateInfo(request);
+        return ResultModelUtil.success();
     }
 
     @Override

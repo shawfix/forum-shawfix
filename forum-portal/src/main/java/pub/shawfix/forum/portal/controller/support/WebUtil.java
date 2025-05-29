@@ -1,6 +1,7 @@
 package pub.shawfix.forum.portal.controller.support;
 
 import org.springframework.util.ObjectUtils;
+import pub.shawfix.forum.common.constant.Constant;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -36,5 +37,28 @@ public class WebUtil {
         cookie.setPath("/");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
+    }
+
+    public static String cookieGetSid(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (!ObjectUtils.isEmpty(cookies)) {
+            for (Cookie cookie : cookies) {
+                if (WebConst.COOKIE_SID_KEY.equals(cookie.getName()) && !ObjectUtils.isEmpty(cookie.getValue())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+
+        String headerSid = request.getHeader(Constant.REQUEST_HEADER_TOKEN_KEY);
+        if (!ObjectUtils.isEmpty(headerSid)) {
+            return headerSid;
+        }
+
+        String querySid = request.getParameter(Constant.REQUEST_QUERY_TOKEN_KEY);
+        if (!ObjectUtils.isEmpty(querySid)) {
+            return querySid;
+        }
+
+        return null;
     }
 }
