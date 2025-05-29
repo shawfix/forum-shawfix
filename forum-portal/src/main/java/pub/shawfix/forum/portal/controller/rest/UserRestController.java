@@ -74,12 +74,10 @@ public class UserRestController {
     @PostMapping("/update-headimg")
     public ResultModel<?> resultModelUpdateHeadImg(MultipartFile file, HttpServletRequest request) throws IOException {
         request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
-
-        // 获取文件内容
-        InputStream is = file.getInputStream();
         // 获取原始文件名
         String originalFilename = file.getOriginalFilename();
         ResultModel<String> linkFileName = updateHeadImg(file, originalFilename, request);
+
         return userApiService.updateHeadImg(linkFileName.getData());
     }
 
