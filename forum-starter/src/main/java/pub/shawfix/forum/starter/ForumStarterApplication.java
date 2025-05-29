@@ -10,14 +10,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication(scanBasePackages = "pub.shawfix.forum")
 @MapperScan(value = {"pub.shawfix.forum.infrastructure.dal.dao"})
-// TODO: SpringBootServletInitializer类是做什么的
+// 继承SpringBootServletInitializer是为了打包成war包通过外部的web容器启动时，告诉SpringBoot应该如何初始化应用
 public class ForumStarterApplication extends SpringBootServletInitializer {
 
   public static void main(String[] args) {
     SpringApplication.run(ForumStarterApplication.class, args);
   }
 
-  // TODO: 重写的意义
+
   @Override
   protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
     return builder.sources(ForumStarterApplication.class);
