@@ -78,7 +78,7 @@ public class UserApiServiceImpl implements UserApiService {
 
     @Override
     public ResultModel<UserInfoResponse> info(String token) {
-        return null;
+        return ResultModelUtil.success(userManager.info(token));
     }
 
     @Override

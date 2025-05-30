@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import pub.shawfix.forum.api.request.user.*;
+import pub.shawfix.forum.api.response.user.UserInfoResponse;
 import pub.shawfix.forum.app.support.IsLogin;
 import pub.shawfix.forum.app.support.LoginUserContext;
 import pub.shawfix.forum.app.transfer.UserTransfer;
@@ -122,6 +123,18 @@ public class UserManager extends AbstractLoginManager {
         updateCacheUser(user);
 
         userRepository.update(user);
+    }
+
+    /**
+     * 获取token对应的用户详情
+     * @param token
+     * @return
+     */
+    public UserInfoResponse info(String token) {
+        String cacheUserStr = cacheService.get(CacheBizTypeEn.USER_LOGIN_TOKEN, token);
+        CheckUtil.isEmpty(cacheUserStr, ErrorCodeEn.USER_TOKEN_INVALID);
+
+        return UserTransfer.toUserInfoResponse(JSON.parseObject(cacheUserStr, User.class));
     }
 
     /**
