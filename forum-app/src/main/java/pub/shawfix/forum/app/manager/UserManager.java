@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import pub.shawfix.forum.api.request.user.UserEmailLoginRequest;
-import pub.shawfix.forum.api.request.user.UserRegisterRequest;
-import pub.shawfix.forum.api.request.user.UserTokenLogoutRequest;
-import pub.shawfix.forum.api.request.user.UserUpdateInfoRequest;
+import pub.shawfix.forum.api.request.user.*;
 import pub.shawfix.forum.app.support.IsLogin;
 import pub.shawfix.forum.app.support.LoginUserContext;
 import pub.shawfix.forum.app.transfer.UserTransfer;
@@ -37,6 +34,7 @@ public class UserManager extends AbstractLoginManager {
 
     /**
      * 邮箱 + 密码 登录
+     *
      * @param request
      * @return
      */
@@ -58,6 +56,7 @@ public class UserManager extends AbstractLoginManager {
 
     /**
      * 用户注册
+     *
      * @param request
      * @return
      */
@@ -98,6 +97,7 @@ public class UserManager extends AbstractLoginManager {
 
     /**
      * 更新用户头像
+     *
      * @param linkFilenameData
      */
     @IsLogin
@@ -110,8 +110,23 @@ public class UserManager extends AbstractLoginManager {
         userRepository.update(loginUser);
     }
 
+    @IsLogin
+    @Transactional
+    public void updatePwd(UserUpdatePwdRequest request) {
+        User user = LoginUserContext.getUser();
+        CheckUtil.isFalse(StringUtil.md5UserPassword(request.getOldPassword()).equals(user.getPassword()), ErrorCodeEn.USER_OLD_PASSWORD_ERROR);
+
+        user.setPassword(StringUtil.md5UserPassword(request.getNewPassword()));
+
+        // 更新缓存中登录用户信息
+        updateCacheUser(user);
+
+        userRepository.update(user);
+    }
+
     /**
      * 登出
+     *
      * @param request
      */
     public void logout(UserTokenLogoutRequest request) {

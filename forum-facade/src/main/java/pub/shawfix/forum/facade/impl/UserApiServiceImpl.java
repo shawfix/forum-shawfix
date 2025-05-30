@@ -106,7 +106,10 @@ public class UserApiServiceImpl implements UserApiService {
 
     @Override
     public ResultModel<?> updatePwd(UserUpdatePwdRequest request) {
-        return null;
+        UserValidator.updatePwd(request);
+        userManager.updatePwd(request);
+
+        return ResultModelUtil.success();
     }
 
     @Override

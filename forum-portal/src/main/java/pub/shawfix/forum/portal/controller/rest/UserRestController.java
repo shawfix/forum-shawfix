@@ -11,6 +11,7 @@ import pub.shawfix.forum.api.request.file.FileUploadImgRequest;
 import pub.shawfix.forum.api.request.user.UserEmailLoginRequest;
 import pub.shawfix.forum.api.request.user.UserRegisterRequest;
 import pub.shawfix.forum.api.request.user.UserUpdateInfoRequest;
+import pub.shawfix.forum.api.request.user.UserUpdatePwdRequest;
 import pub.shawfix.forum.api.service.FileApiService;
 import pub.shawfix.forum.api.service.UserApiService;
 import pub.shawfix.forum.common.constant.Constant;
@@ -79,6 +80,13 @@ public class UserRestController {
         ResultModel<String> linkFileName = updateHeadImg(file, originalFilename, request);
 
         return userApiService.updateHeadImg(linkFileName.getData());
+    }
+
+    @PostMapping("/update-pwd")
+    public ResultModel<?> updatePwd(@RequestBody UserUpdatePwdRequest updatePwdRequest, HttpServletRequest request) {
+        request.setAttribute(Constant.REQUEST_HEADER_TOKEN_KEY, WebUtil.cookieGetSid(request));
+
+        return userApiService.updatePwd(updatePwdRequest);
     }
 
     // .css;.js;.png;.jpeg;.jpg;.woff2;.html;.ico;.gif;.bmp;.svg;.woff;.map
