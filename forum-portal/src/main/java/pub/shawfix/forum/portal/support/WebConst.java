@@ -1,4 +1,4 @@
-package pub.shawfix.forum.portal.controller.support;
+package pub.shawfix.forum.portal.support;
 
 public interface WebConst {
 

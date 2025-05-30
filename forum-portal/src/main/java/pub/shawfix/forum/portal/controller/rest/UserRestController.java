@@ -17,13 +17,12 @@ import pub.shawfix.forum.api.service.UserApiService;
 import pub.shawfix.forum.common.constant.Constant;
 import pub.shawfix.forum.common.enums.ErrorCodeEn;
 import pub.shawfix.forum.common.support.CheckUtil;
-import pub.shawfix.forum.portal.controller.support.WebUtil;
+import pub.shawfix.forum.portal.support.WebUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Set;
 
 /**
