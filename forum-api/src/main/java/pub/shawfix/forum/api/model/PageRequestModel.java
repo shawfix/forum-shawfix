@@ -1,5 +1,6 @@
 package pub.shawfix.forum.api.model;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import java.io.Serializable;
  * @create 2025/5/27 11:34
  * @desc
  **/
-@Setter
+@Getter
 @NoArgsConstructor
 public class PageRequestModel<T> implements Serializable {
     private static final Integer DEF_PAGE_SIZE = 10;

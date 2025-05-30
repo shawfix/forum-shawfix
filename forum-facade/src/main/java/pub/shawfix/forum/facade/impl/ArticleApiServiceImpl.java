@@ -11,6 +11,9 @@ import pub.shawfix.forum.api.response.article.ArticleQueryTypesResponse;
 import pub.shawfix.forum.api.response.article.ArticleUserPageResponse;
 import pub.shawfix.forum.api.service.ArticleApiService;
 import pub.shawfix.forum.app.manager.ArticleManager;
+import pub.shawfix.forum.facade.support.ResultModelUtil;
+import pub.shawfix.forum.facade.validator.ArticleValidator;
+import pub.shawfix.forum.facade.validator.PageRequestModelValidator;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -28,71 +31,102 @@ public class ArticleApiServiceImpl implements ArticleApiService {
 
     @Override
     public ResultModel<List<ArticleQueryTypesResponse>> queryAllTypes() {
-        return null;
+        return ResultModelUtil.success(articleManager.queryAllTypes());
     }
 
     @Override
     public ResultModel<List<ArticleQueryTypesResponse>> queryAdminTypes() {
-        return null;
-    }
-
-    @Override
-    public ResultModel<PageResponseModel<ArticleQueryTypesResponse>> adminPage(PageRequestModel<ArticleAdminPageRequest> pageRequestModel) {
-        return null;
+        return ResultModelUtil.success(articleManager.queryAdminTypes());
     }
 
     @Override
     public ResultModel<List<ArticleQueryTypesResponse>> queryEditArticleTypes() {
-        return null;
+        return ResultModelUtil.success(articleManager.queryEditArticleTypes());
     }
 
     @Override
     public ResultModel<?> addType(ArticleAddTypeRequest request) {
-        return null;
+        ArticleValidator.addType(request);
+
+        articleManager.addType(request);
+
+        return ResultModelUtil.success();
     }
 
     @Override
     public ResultModel<Long> saveArticle(ArticleSaveArticleRequest request) {
-        return null;
+        ArticleValidator.saveArticle(request);
+
+        return ResultModelUtil.success(articleManager.saveArticle(request));
     }
 
     @Override
     public ResultModel<PageResponseModel<ArticleUserPageResponse>> userPage(PageRequestModel<ArticleUserPageRequest> pageRequestModel) {
-        return null;
+        PageRequestModelValidator.validator(pageRequestModel);
+
+        return ResultModelUtil.success(articleManager.userPage(pageRequestModel));
     }
 
     @Override
     public ResultModel<PageResponseModel<ArticleUserPageResponse>> authorPage(PageRequestModel<ArticleAuthorPageRequest> pageRequestModel) {
-        return null;
+        PageRequestModelValidator.validator(pageRequestModel);
+
+        return ResultModelUtil.success(articleManager.authorPage(pageRequestModel));
+    }
+
+    @Override
+    public ResultModel<PageResponseModel<ArticleUserPageResponse>> adminPage(PageRequestModel<ArticleAdminPageRequest> pageRequestModel) {
+        PageRequestModelValidator.validator(pageRequestModel);
+
+        return ResultModelUtil.success(articleManager.adminPage(pageRequestModel));
     }
 
     @Override
     public ResultModel<ArticleInfoResponse> info(Long id) {
-        return null;
+
+        return ResultModelUtil.success(articleManager.info(id));
     }
 
     @Override
     public ResultModel<?> adminTop(AdminBooleanRequest booleanRequest) {
-        return null;
+        ArticleValidator.validatorBooleanRequest(booleanRequest);
+
+        articleManager.adminTop(booleanRequest);
+
+        return ResultModelUtil.success();
     }
 
     @Override
     public ResultModel<?> adminOfficial(AdminBooleanRequest booleanRequest) {
-        return null;
+        ArticleValidator.validatorBooleanRequest(booleanRequest);
+
+        articleManager.adminOfficial(booleanRequest);
+
+        return ResultModelUtil.success();
     }
 
     @Override
     public ResultModel<?> adminMarrow(AdminBooleanRequest booleanRequest) {
-        return null;
+        ArticleValidator.validatorBooleanRequest(booleanRequest);
+
+        articleManager.adminMarrow(booleanRequest);
+
+        return ResultModelUtil.success();
     }
 
     @Override
     public ResultModel<PageResponseModel<ArticleQueryTypesResponse>> typePage(PageRequestModel<ArticleAdminTypePageRequest> pageRequestModel) {
-        return null;
+        PageRequestModelValidator.validator(pageRequestModel);
+
+        return ResultModelUtil.success(articleManager.typePage(pageRequestModel));
     }
 
     @Override
     public ResultModel<?> typeAuditState(AdminBooleanRequest booleanRequest) {
-        return null;
+        ArticleValidator.validatorBooleanRequest(booleanRequest);
+
+        articleManager.typeAuditState(booleanRequest);
+
+        return ResultModelUtil.success();
     }
 }

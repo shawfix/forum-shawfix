@@ -22,7 +22,7 @@ public interface ArticleApiService {
 
     ResultModel<List<ArticleQueryTypesResponse>> queryAdminTypes();
 
-    ResultModel<PageResponseModel<ArticleQueryTypesResponse>> adminPage(PageRequestModel<ArticleAdminPageRequest> pageRequestModel);
+    ResultModel<PageResponseModel<ArticleUserPageResponse>> adminPage(PageRequestModel<ArticleAdminPageRequest> pageRequestModel);
 
     ResultModel<List<ArticleQueryTypesResponse>> queryEditArticleTypes();
 
