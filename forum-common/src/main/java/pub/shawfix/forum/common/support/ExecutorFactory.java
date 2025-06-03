@@ -26,7 +26,8 @@ public class ExecutorFactory {
     private static Thread.UncaughtExceptionHandler getCommonHandler() {
         return (t, ex) -> {
             log.error("GroupName:[{}], ThreadName:[{}]. "
-                    , t.getThreadGroup().getName()
+                    , t.getThreadGroup()
+                            .getName()
                     , t.getName());
             if (ex != null) {
                 log.error("Cause:[{}], Message:[{}]. "

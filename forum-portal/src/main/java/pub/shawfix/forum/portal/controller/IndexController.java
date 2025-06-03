@@ -24,6 +24,7 @@ public class IndexController {
  @Resource
  private ArticleApiService articleApiService;
 
+ // TODO: continue
  @Resource
  private ConfigApiService configApiService;
 
